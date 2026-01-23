@@ -256,14 +256,6 @@ GEMINI_API_KEY=your_gemini_api_key
 4. Push to the branch
 5. Create a Pull Request
 
-## 📄 License
-
-This project is proprietary and confidential. All rights reserved.
-
-## 👥 Credits
-
-Developed by PrayatshuMisra for the ApacheAI project.
-
 ## 📞 Support
 
 For support and inquiries, please open an issue in the GitHub repository.
