@@ -45,6 +45,10 @@ ApacheAI is an intelligent aviation weather briefing system that provides pilots
 2. **Supabase**
    - Purpose: Database and authentication
    - Features: Real-time data storage, REST API
+     
+3. **Aviation Weather Data API (NOAA / AviationWeather.gov)**
+   - Purpose: Real-time aviation weather data retrieval
+   - Features: Live METAR data, standardized aviation weather reports used for operational briefings
 
 ### Internal APIs
 1. **Weather Endpoints**
