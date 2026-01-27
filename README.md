@@ -4,7 +4,7 @@
 
 ApacheAI is an intelligent aviation weather briefing system that provides pilots with real-time, AI-enhanced weather insights for safer flight decisions. The application combines multiple aviation data sources with advanced AI processing to deliver clear, actionable weather briefings.
 
-## 🌟 Key Features
+## Key Features
 
 - **Intelligent Weather Analysis**: AI-powered synthesis of METARs, TAFs, PIREPs and NOTAMs
 - **Natural Language Briefings**: Human-readable summaries generated
