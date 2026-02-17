@@ -9,15 +9,15 @@ Intelligent Aviation Weather Briefings for the Modern Pilot
 
 Our team came together through a shared passion for aviation and technology — driven by the belief that complex aviation data can be transformed into clear, actionable insights for pilots.
 
-* Advait Balachandar **(Backend Lead)**: A second-year Artificial Intelligence and Machine Learning student and private pilot who leads backend development. Alex built the weather ingestion system, implemented METAR/TAF parsing logic, and developed the core APIs that power our briefing engine.
+* Advait Balachandar **(Backend Lead)**: A second-year Artificial Intelligence and Machine Learning student and private pilot who leads backend development. Advait built the weather ingestion system, implemented METAR/TAF parsing logic, and developed the core APIs that power our briefing engine.
 
-* Prayatshu Misra **(Product Interface Engineer)**: A second-year Artificial Intelligence and Machine Learning student and avid flight simmer focused on user-centered design. Sarah designs intuitive dashboards, interactive weather maps, and data visualizations to ensure pilots can quickly interpret critical information.
+* Prayatshu Misra **(Product Interface Engineer)**: A second-year Artificial Intelligence and Machine Learning student and avid flight simmer focused on user-centered design. He designs intuitive dashboards, interactive weather maps, and data visualizations to ensure pilots can quickly interpret critical information.
 
-* Rohan Mathur **(DevOps Engineer)**: A second-year Information Technology student specializing in cloud systems. Michael manages deployment, CI/CD pipelines, and infrastructure setup to ensure our platform runs reliably and securely.
+* Rohan Mathur **(DevOps Engineer)**: A second-year Information Technology student specializing in cloud systems. Rohan manages deployment, CI/CD pipelines, and infrastructure setup to ensure our platform runs reliably and securely.
 
-* Shreshth Kabra **(ML Engineer)**: A second-year COmputer Science student and student pilot who develops AI-powered summarization and PIREP-generation workflows. Emily works on model fine-tuning, data preprocessing, and validating outputs to ensure technical accuracy and aviation relevance.
+* Shreshth Kabra **(ML Engineer)**: A second-year Computer Science student who develops AI-powered summarization and PIREP-generation workflows. He works on model fine-tuning, data preprocessing, and validating outputs to ensure technical accuracy and aviation relevance.
 
-We decided to work together for "AI Unlocked" because we saw a critical gap in aviation safety: **information overload**. We realized that while data is abundant, *insight* is scarce. By combining our diverse skills—Advait's backend logic, Prayatshu's visual storytelling, Rohan's robust engineering, and Shreshth's user advocacy—we knew we could build something that doesn't just display weather, but *understands* it.
+We decided to work together for "AI Unlocked" because we saw a critical gap in aviation safety: **information overload**. We realized that while data is abundant, *insight* is scarce. By combining our diverse skills - Advait's backend architecture, Prayatshu's visual storytelling, Rohan's robust engineering, and Shreshth's ML logic - we knew we could build something that doesn't just display weather, but *understands* it.
 
 # The Concept
 **The Problem**: Pre-flight weather briefings today are a mess of cryptic codes (METARs, TAFs), disjointed data sources, and 50-page PDF blobs. Student pilots are often overwhelmed by the sheer volume of data, leading to rote memorization rather than true understanding. This "data saturation" makes it difficult for trainees to build a mental model of the atmosphere, a critical skill for safe flight.
@@ -47,12 +47,12 @@ Our primary market is **General Aviation (GA)**.
 *   **Goal**: Wants a "plain English" translation and a visual map to see if he can legally fly VFR (Visual Flight Rules) for his cross-country solo.
 *   **ApacheAI Solution**: Uses the "Natural Language Briefing" and "Traffic Light" map markers (Red/Green/Blue) to instantly know if the flight is a go/no-go.
 
-## Persona 2: "Commercial Captain Carla"
+## Persona 2: "Academy Director Daniel"
 *   **Age**: 42
-*   **Experience**: 8,000 flight hours.
-*   **Pain Point**: Time-poor. Needs to know the *exceptions*—the one Turbulence PIREP or the Runway Closure NOTAM—without reading 10 pages of irrelevant clear-weather data.
-*   **Goal**: Quick situational awareness and automated performance calculations (Fuel/Time).
-*   **ApacheAI Solution**: Uses the "AI Summary" to skip the fluff and the "Voice Assistant" to file a PIREP about turbulence mid-flight without putting down her coffee.
+*   **Experience**: 8,000 flight hours, manages a fleet of 12 training aircraft.
+*   **Pain Point**: Oversees dozens of daily training flights and needs a fast, consolidated view of weather risks, NOTAMs, runway closures, and airspace changes across multiple routes—without digging through lengthy briefings for each student sortie.
+*   **Goal**: Maintain operational safety and efficiency across the academy. Quickly assess training-day viability, identify risk trends (e.g., recurring turbulence or crosswind issues), and make data-informed go/no-go decisions for instructors and students.
+*   **ApacheAI Solution**: Uses the AI Summary to get a high-level operational snapshot for all scheduled routes and the interactive dashboard to monitor weather trends and NOTAM updates in real time. Leverages automated brief generation to standardize pre-flight prep across instructors, ensuring consistency and safety throughout the academy.
 
 # How it works
 We built ApacheAI using a modular, cloud-ready architecture designed for scalability and intelligence.
