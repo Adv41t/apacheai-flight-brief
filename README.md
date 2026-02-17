@@ -33,32 +33,32 @@ ApacheAI follows a modern full-stack architecture with a Flask backend serving a
 ```mermaid
 graph TD
     subgraph "Frontend (Browser)"
-        UI[User Interface]
-        Map[Leaflet Map]
-        Charts[Chart.js Graphs]
-        Voice[Voice Assistant Module]
+        UI["User Interface"]
+        Map["Leaflet Map"]
+        Charts["Chart.js Graphs"]
+        Voice["Voice Assistant Module"]
     end
 
     subgraph "Backend (Flask)"
-        Server[Flask Server]
-        Routes[API Routes]
-        PDF[PDF Generator (wkhtmltopdf)]
-        AI_Logic[AI Logic (engtopirep.py)]
+        Server["Flask Server"]
+        Routes["API Routes"]
+        PDF["PDF Generator (wkhtmltopdf)"]
+        AI_Logic["AI Logic (engtopirep.py)"]
     end
 
     subgraph "External Services"
-        Gemini[Google Gemini AI]
-        Supabase[Supabase DB (PostgreSQL)]
-        NOAA[AviationWeather.gov API]
+        Gemini["Google Gemini AI"]
+        Supabase["Supabase DB (PostgreSQL)"]
+        NOAA["AviationWeather.gov API"]
     end
 
     UI --> Routes
     Voice --> UI
-    Routes --> NOAA : Fetch METAR/TAF
-    Routes --> Supabase : Fetch/Store PIREPs & NOTAMs
+    Routes --> NOAA : "Fetch METAR/TAF"
+    Routes --> Supabase : "Fetch/Store PIREPs & NOTAMs"
     Routes --> AI_Logic
-    AI_Logic --> Gemini : Generate Summary/PIREP
-    Routes --> PDF : Generate Briefing PDF
+    AI_Logic --> Gemini : "Generate Summary/PIREP"
+    Routes --> PDF : "Generate Briefing PDF"
 ```
 
 ### Data Flow Diagram
