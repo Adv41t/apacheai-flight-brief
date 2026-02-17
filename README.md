@@ -1,265 +1,209 @@
 # ApacheAI - Intelligent Aviation Weather Briefings
 
-## 🛩️ Project Overview
-
-ApacheAI is an intelligent aviation weather briefing system that provides pilots with real-time, AI-enhanced weather insights for safer flight decisions. The application combines multiple aviation data sources with advanced AI processing to deliver clear, actionable weather briefings.
+**ApacheAI** is a next-generation aviation weather briefing system designed to provide pilots with clear, actionable, and AI-enhanced weather insights. By aggregating data from official sources (METARs, TAFs), integrating community reports (PIREPs), and leveraging Google's Gemini AI, ApacheAI transforms raw data into comprehensive flight briefings.
 
 ## Key Features
 
-- **Intelligent Weather Analysis**: AI-powered synthesis of METARs, TAFs, PIREPs and NOTAMs
-- **Natural Language Briefings**: Human-readable summaries generated
-- **Interactive Route Planning**: Visual flight planning with dynamic weather overlays
-- **PIREP Management**: Convert plain English pilot reports to standard format
-- **PDF Export**: Downloadable briefings for offline use
-- **Performance Calculations**: Automated fuel and time calculations considering weather conditions
+*   **AI-Powered Analysis**: Generates natural language summaries of weather conditions using Google Gemini 2.5, adhering to specific pilot profiles (e.g., VFR, IFR).
+*   **Interactive Route Mapping**: 
+    *   Visualizes great-circle routes on a dynamic Leaflet map.
+    *   Markers for Departure, Destination, and Waypoints.
+    *   Color-coded markers based on flight category (VFR, MVFR, IFR, LIFR).
+    *   Antimeridian-safe rendering for long-haul flights.
+*   **Dynamic Weather Visualization**:
+    *   Real-time charts for Temperature, Wind Speed/Gusts, Visibility, Altimeter, and Dew Point along the route.
+    *   Responsive Chart.js implementation.
+*   **Voice Assistant**: 
+    *   Hands-free PIREP creation using voice commands (e.g., "Problem is...").
+    *   Triggered via Right-Alt key with visual transcript feedback.
+*   **PIREP Management**:
+    *   **Submission**: Convert natural language (text or voice) into standardized PIREP format.
+    *   **Retrieval**: Fetches relevant PIREPs for the route from the last 6 hours.
+*   **NOTAM Integration**: Fetches and displays Notices to Air Missions relevant to the selected route.
+*   **PDF Briefing Export**: Generates professional, offline-ready PDF briefings containing all route details, weather summaries, and charts.
+*   **Performance Calculations**: Estimates fuel burn, time enroute, and distance based on aircraft profiles (C172, B737, A320).
+*   **Alternative Route Suggestions**: (MVP Placeholder) Logic to suggest safer routes based on adverse weather.
 
-## 🏗️ Architecture
+---
 
-### Frontend (Single Page Application)
-- **Framework**: Vanilla JavaScript with TailwindCSS
-- **Key Components**:
-  - Dynamic route-based rendering
-  - Interactive map interface
-  - Real-time weather visualization
-  - Responsive design with dark mode
+## System Architecture
 
-### Backend (Python Flask)
-- **Main Components**:
-  - RESTful API endpoints
-  - Weather data aggregation
-  - AI summary generation
-  - PDF report generation
+ApacheAI follows a modern full-stack architecture with a Flask backend serving a robust Vanilla JS frontend.
 
-### Database (Supabase)
-- **Tables**:
-  - `pireps`: Pilot reports storage
-  - `notams`: Notice to Airmen storage
+```mermaid
+graph TD
+    subgraph "Frontend (Browser)"
+        UI[User Interface]
+        Map[Leaflet Map]
+        Charts[Chart.js Graphs]
+        Voice[Voice Assistant Module]
+    end
 
-## 🔌 APIs and Services
+    subgraph "Backend (Flask)"
+        Server[Flask Server]
+        Routes[API Routes]
+        PDF[PDF Generator (wkhtmltopdf)]
+        AI_Logic[AI Logic (engtopirep.py)]
+    end
 
-### External APIs
-1. **Google Gemini AI**
-   - Purpose: Natural language weather briefing generation
-   - Features: Context-aware summaries, safety recommendations
+    subgraph "External Services"
+        Gemini[Google Gemini AI]
+        Supabase[Supabase DB (PostgreSQL)]
+        NOAA[AviationWeather.gov API]
+    end
 
-2. **Supabase**
-   - Purpose: Database and authentication
-   - Features: Real-time data storage, REST API
-     
-3. **Aviation Weather Data API (NOAA / AviationWeather.gov)**
-   - Purpose: Real-time aviation weather data retrieval
-   - Features: Live METAR data, standardized aviation weather reports used for operational briefings
-
-### Internal APIs
-1. **Weather Endpoints**
-   - `/briefing`: Main briefing generation
-   - `/api/convert-to-pirep`: PIREP format conversion
-   - `/download-briefing`: PDF generation
-
-## 🛠️ Technical Stack
-
-### Frontend Technologies
-- HTML5/CSS3/JavaScript
-- TailwindCSS for styling
-- Leaflet.js for mapping
-- Chart.js for weather visualizations
-
-### Backend Technologies
-- Python 3.x
-- Flask web framework
-- Google Generative AI (Gemini 2.5-flash model)
-- PDFKit for report generation
-
-### Development Tools
-- VS Code for development
-- Git for version control
-- Environment variables for configuration
-
-## 📡 Data Flow
-
-1. **Weather Data Collection**
-   - Fetch METARs and TAFs
-   - Retrieve recent PIREPs
-   - Collect relevant NOTAMs
-
-2. **Data Processing**
-   - Aggregate multiple data sources
-   - Format for AI processing
-   - Generate comprehensive briefings
-
-3. **User Interface**
-   - Dynamic route rendering
-   - Real-time updates
-   - Interactive components
-
-## 🚀 Features in Detail
-
-### Flight Plan Generation
-- **Intelligent Route Planning**
-  - Intuitive route input with airport autocomplete
-  - Multiple waypoint support with sequential routing
-  - Aircraft type selection with performance profiles
-  - NOTAM integration toggle for comprehensive briefings
-  - Real-time route validation and optimization
-
-### Performance Calculations
-- **Aircraft-Specific Performance**
-  - Automated fuel burn calculations based on aircraft type
-  - Time en-route estimations considering winds aloft
-  - Groundspeed calculations with headwind/tailwind components
-  - Range and endurance assessments
-  - Performance adjustments based on weather conditions
-
-### Alternative Routes System
-- **Intelligent Route Suggestions**
-  - Automatic detection of adverse weather conditions
-  - Alternative airport suggestions for weather-impacted destinations
-  - Comparative analysis of primary and alternative routes
-  - Distance, time, and fuel consumption comparisons
-  - Color-coded visualization of weather conditions
-  - Detailed reasoning for suggested alternatives
-
-### Voice Assistant
-- **Hands-Free PIREP Creation**
-  - Natural voice command recognition
-  - Context-aware command processing
-  - Support for multiple PIREP fields:
-    - Problem/condition reporting
-    - Location specification
-    - Aircraft type
-    - Altitude information
-  - Voice feedback for confirmation
-  - Help commands for guidance
-  - Right Alt key hotkey support
-  - Visual transcript display
-
-### PIREP System
-- **Advanced Report Processing**
-  - Natural language input processing
-  - AI-powered conversion to standard format
-  - Historical PIREP database with 6-hour retention
-  - Geographical correlation with flight routes
-  - Automatic ICAO code extraction
-  - Aircraft type recognition
-  - Integration with weather briefing system
-
-### Weather Visualization
-- **Interactive Map Interface**
-  - Dynamic Leaflet-based mapping
-  - Great circle route visualization
-  - Weather condition overlays
-  - Color-coded airport markers:
-    - VFR: Green
-    - MVFR: Blue
-    - IFR: Red
-    - LIFR: Pink
-  - Airport information tooltips
-  - Route segment distance calculations
-  - Antimeridian handling for long routes
-
-### Weather Analysis
-- **Comprehensive Data Integration**
-  - Real-time METAR processing
-  - TAF forecast interpretation
-  - PIREP correlation
-  - NOTAM integration
-  - AI-powered weather synthesis
-  - Trend analysis and predictions
-  - Safety recommendations
-
-### Dynamic Charts
-- **Weather Parameter Visualization**
-  - Temperature trends along route
-  - Wind speed and direction analysis
-  - Visibility conditions
-  - Cloud ceiling patterns
-  - Interactive chart tooltips
-  - Mobile-responsive design
-  - Auto-updating data
-
-### PDF Export System
-- **Comprehensive Documentation**
-  - Complete briefing content export
-  - Interactive charts inclusion
-  - Primary route details
-  - Alternative route comparisons
-  - Airport-specific information
-  - NOTAMs and PIREPs
-  - Performance calculations
-  - Printer-friendly formatting
-
-## ⚙️ Configuration
-
-### Environment Variables
-```
-SUPABASE_URL=your_supabase_url
-SUPABASE_SERVICE_KEY=your_service_key
-SUPABASE_ANON_KEY=your_anon_key
-GEMINI_API_KEY=your_gemini_api_key
+    UI --> Routes
+    Voice --> UI
+    Routes --> NOAA : Fetch METAR/TAF
+    Routes --> Supabase : Fetch/Store PIREPs & NOTAMs
+    Routes --> AI_Logic
+    AI_Logic --> Gemini : Generate Summary/PIREP
+    Routes --> PDF : Generate Briefing PDF
 ```
 
-### Required Dependencies
-- Python packages in `requirements.txt`
-- Node.js for development tools
-- wkhtmltopdf for PDF generation
+### Data Flow Diagram
 
-## 🔒 Security Features
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant Backend
+    participant APIs
+    
+    User->>Frontend: Enters Route (e.g., KJFK KORD)
+    Frontend->>Backend: GET /briefing?codes=KJFK,KORD
+    Backend->>APIs: Fetch METAR/TAF (NOAA)
+    Backend->>APIs: Fetch PIREPs/NOTAMs (Supabase)
+    Backend->>APIs: Generate Summary (Gemini AI)
+    APIs-->>Backend: Return Data
+    Backend-->>Frontend: JSON Response (Weather + Summary)
+    Frontend->>User: Display Map, Charts, Briefing
+```
 
-- Secure API key handling
-- Environment-based configuration
-- Client-side data validation
-- Server-side request verification
+---
 
-## 🎨 UI/UX Features
+## Codebase Structure & Components
 
-- Dark mode optimization
-- Responsive design
-- Loading animations
-- Interactive tooltips
-- Error handling with user feedback
+### 1. Backend (`/` root)
+The backend is built with **Flask** and handles API requests, data aggregation, and PDF generation.
 
-## 📈 Performance Optimizations
+*   `get_weather.py`: **Main Application Entry Point**.
+    *   Initializes Flask app.
+    *   Configures Gemini AI and Supabase.
+    *   defines routes: `/`, `/briefing`, `/download-briefing`, `/api/convert-to-pirep`.
+    *   Handles PDF generation using `pdfkit`.
+*   `engtopirep.py`: **AI Logic Module**.
+    *   Specialized script to convert natural language pilot reports into standardized PIREP strings using Gemini.
+*   `notams.sql` / `notams_data.sql`: **Database Schema**.
+    *   SQL definitions for the `NOTAMs` table in Supabase.
+*   `templates/`: **Jinja2 Templates**.
+    *   `briefing_template.html`: The HTML template used to generate the downloadable PDF briefing.
 
-- Efficient data caching
-- Lazy loading of components
-- Optimized API calls
-- Compressed data transfer
+### 2. Frontend (`/aura`)
+The frontend is a Single Page Application (SPA) served by Flask.
 
-## 🔧 Development Setup
+*   `aura/index.html`: **Main HTML Structure**.
+    *   Loads TailwindCSS (CDN), Leaflet (CDN), Chart.js (CDN), and custom styles.
+    *   Contains the mounting point `<div id="app">`.
+    *   Includes the global loader and rain overlay effects.
+*   `aura/app.js`: **Core Application Logic**.
+    *   **Router**: Simple hash-based interaction handling (Landing -> Plan -> Briefing).
+    *   **State Management**: `AppState` object tracks route, weather data, and params.
+    *   **Components**:
+        *   `renderLanding()`: Hero section with feature cards.
+        *   `renderFlightPlan()`: Input form for route, aircraft, and toggles.
+        *   `renderBriefing()`: Main dashboard with Summary, Map, and Charts.
+    *   **Visualizations**:
+        *   `createWeatherGraphs()`: Renders Chart.js instances.
+        *   `initMapIfData()`: Renders Leaflet map with Great Circle routes.
+    *   **Voice Assistant**: Singleton module handling microphone input and speech recognition.
+*   `aura/styles.css`: **Custom Styling**.
+    *   Contains animations (glow effects, shimmer), map marker styles, and overrides for standard components.
 
-1. Clone the repository
-2. Install Python dependencies
-3. Configure environment variables
-4. Install wkhtmltopdf for PDF generation
-5. Start the Flask development server
+---
 
-## 📝 API Documentation
+## Installation & Setup
 
-### GET /briefing
-- Parameters:
-  - `codes`: Comma-separated ICAO airport codes
-  - `include_notams`: Boolean for NOTAM inclusion
-- Returns: Complete weather briefing data
+### Prerequisites
+*   Python 3.8+
+*   `wkhtmltopdf` (Required for PDF generation)
+*   Supabase Account (for Database)
+*   Google Cloud Account (for Gemini API)
 
-### POST /api/convert-to-pirep
-- Parameters:
-  - `text`: Plain English pilot report
-  - `icao`: Airport identifier
-  - `aircraftModel`: Aircraft type
-- Returns: Standardized PIREP format
+### 1. Clone the Repository
+```bash
+git clone <repository-url>
+cd apache-msc
+```
 
-### GET /download-briefing
-- Parameters: Same as /briefing
-- Returns: PDF formatted briefing
+### 2. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+*(Note: If `requirements.txt` is missing, install: `flask requests python-dotenv google-generativeai pdfkit`)*
 
-## 🤝 Contributing
+### 3. Configure Environment Variables
+Create a `.env` file in the root directory:
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+```env
+# API Keys
+GEMINI_API_KEY=your_google_gemini_key
+SUPABASE_URL=your_supabase_project_url
+SUPABASE_SERVICE_KEY=your_supabase_service_role_key
 
-## 📞 Support
+# Optional Configuration
+PILOT_PROFILE="General aviation VFR pilot"
+```
 
-For support and inquiries, please open an issue in the GitHub repository.
+### 4. Database Setup
+Run the SQL scripts in your Supabase SQL Editor to create the necessary tables:
+*   Run content of `notams.sql`
+
+### 5. Install wkhtmltopdf
+*   **Windows**: Download installer from [wkhtmltopdf.org](https://wkhtmltopdf.org/downloads.html).
+*   **Linux**: `sudo apt-get install wkhtmltopdf`
+*   **macOS**: `brew install wkhtmltopdf`
+
+### 6. Run the Application
+```bash
+python get_weather.py
+```
+Access the app at `http://localhost:5001`.
+
+---
+
+## User Workflow
+
+1.  **Landing Page**: Click "Start Briefing".
+2.  **Flight Planning**:
+    *   Enter ICAO codes (e.g., `VIDP VABB`).
+    *   Select Aircraft Type (Affects performance calcs).
+    *   Toggle "Include NOTAMs" if desired.
+    *   Click "Generate Briefing".
+3.  **Briefing Dashboard**:
+    *   **Read**: View the AI-generated "Primary Route Briefing".
+    *   **Visualize**: Check the Map for route and flight categories.
+    *   **Analyze**: Review the temperature/wind charts below the map.
+    *   **Expand**: Click "Read More" for per-airport raw METAR/TAF data.
+4.  **Export/Share**:
+    *   Click "Download PDF" to get a comprehensive report.
+    *   Click "Share" to copy the briefing URL.
+5.  **Submit PIREP** (Optional):
+    *   Use the "Convert PIREP" section or Voice Assistant to submit a report.
+
+---
+
+## Contribution
+
+Contributions are welcome! Please follow these steps:
+1.  Fork the repository.
+2.  Create a feature branch (`git checkout -b feature/NewFeature`).
+3.  Commit your changes.
+4.  Push to the branch.
+5.  Open a Pull Request.
+
+---
+
+## � License
+
+[MIT License](LICENSE) © 2024 ApacheAI Team
