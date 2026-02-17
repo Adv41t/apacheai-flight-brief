@@ -52,8 +52,8 @@ graph TD
     subgraph "Backend (Flask)"
         Server["Flask Server"]
         Routes["API Routes"]
-        PDF["PDF Generator (wkhtmltopdf)"]
-        AI_Logic["AI Logic (engtopirep.py)"]
+        PDF["PDF Generator"]
+        AI_Logic["AI Logic"]
     end
 
     subgraph "External Services"
