@@ -5,22 +5,22 @@ ApacheAI
 Intelligent Aviation Weather Briefings for the Modern Pilot
 
 # The Team
-**The Skyward Innovators**
+**Team- Errorists**
 
 Our team came together through a shared passion for aviation and technology — driven by the belief that complex aviation data can be transformed into clear, actionable insights for pilots.
 
-* Advait Balachandar **(Backend Lead)**: A second-year computer science student and private pilot who leads backend development. Alex built the weather ingestion system, implemented METAR/TAF parsing logic, and developed the core APIs that power our briefing engine.
+* Advait Balachandar **(Backend Lead)**: A second-year Artificial Intelligence and Machine Learning student and private pilot who leads backend development. Alex built the weather ingestion system, implemented METAR/TAF parsing logic, and developed the core APIs that power our briefing engine.
 
-* Prayatshu Misra **(Product Interface Engineer)**: A second-year engineering student and avid flight simmer focused on user-centered design. Sarah designs intuitive dashboards, interactive weather maps, and data visualizations to ensure pilots can quickly interpret critical information.
+* Prayatshu Misra **(Product Interface Engineer)**: A second-year Artificial Intelligence and Machine Learning student and avid flight simmer focused on user-centered design. Sarah designs intuitive dashboards, interactive weather maps, and data visualizations to ensure pilots can quickly interpret critical information.
 
-* Rohan Mathur **(DevOps Engineer)**: A second-year computer engineering student specializing in cloud systems. Michael manages deployment, CI/CD pipelines, and infrastructure setup to ensure our platform runs reliably and securely.
+* Rohan Mathur **(DevOps Engineer)**: A second-year Information Technology student specializing in cloud systems. Michael manages deployment, CI/CD pipelines, and infrastructure setup to ensure our platform runs reliably and securely.
 
-* Shreshth Kabra **(ML Engineer)**: A second-year data science student and student pilot who develops AI-powered summarization and PIREP-generation workflows. Emily works on model fine-tuning, data preprocessing, and validating outputs to ensure technical accuracy and aviation relevance.
+* Shreshth Kabra **(ML Engineer)**: A second-year COmputer Science student and student pilot who develops AI-powered summarization and PIREP-generation workflows. Emily works on model fine-tuning, data preprocessing, and validating outputs to ensure technical accuracy and aviation relevance.
 
-We decided to work together for "AI Unlocked" because we saw a critical gap in aviation safety: **information overload**. We realized that while data is abundant, *insight* is scarce. By combining our diverse skills—Alex's backend logic, Sarah's visual storytelling, Michael's robust engineering, and Emily's user advocacy—we knew we could build something that doesn't just display weather, but *understands* it.
+We decided to work together for "AI Unlocked" because we saw a critical gap in aviation safety: **information overload**. We realized that while data is abundant, *insight* is scarce. By combining our diverse skills—Advait's backend logic, Prayatshu's visual storytelling, Rohan's robust engineering, and Shreshth's user advocacy—we knew we could build something that doesn't just display weather, but *understands* it.
 
 # The Concept
-**The Problem**: Pre-flight weather briefings today are a mess of cryptic codes (METARs, TAFs), disjointed data sources, and 50-page PDF blobs. Pilots, especially students and General Aviation enthusiasts, often struggle to synthesize this massive amount of text into a mental model of the flight, leading to "get-there-itis" and weather-related accidents.
+**The Problem**: Pre-flight weather briefings today are a mess of cryptic codes (METARs, TAFs), disjointed data sources, and 50-page PDF blobs. Student pilots are often overwhelmed by the sheer volume of data, leading to rote memorization rather than true understanding. This "data saturation" makes it difficult for trainees to build a mental model of the atmosphere, a critical skill for safe flight.
 
 **The Solution**: ApacheAI is a unified, intelligent briefing platform. We don't just scrape data; we use Generative AI to act as a virtual co-pilot.
 1.  **Aggregation**: We pull METARs, TAFs, NOTAMs, and PIREPs into a single, cohesive route view.
@@ -32,9 +32,9 @@ We decided to work together for "AI Unlocked" because we saw a critical gap in a
 Our primary market is **General Aviation (GA)**.
 *   **Geography**: Primarily United States (FAA data sources) and International (ICAO support).
 *   **Demographics**:
-    *   **Student Pilots**: ~250,000 active students who need help decoding weather.
-    *   **Private Pilots**: ~160,000 active private pilots flying VFR/IFR for leisure or business.
-    *   **Flight Instructors (CFIs)**: Needing better tools to teach weather decision-making.
+    *   **Student Pilots**: ~250,000 active students who use the platform as a **training aid** to compare raw data with AI explanations.
+    *   **Flight Instructors (CFIs)**: Needing visual tools to teach weather theory and decision-making.
+    *   **Flight Simulation Enthusiasts**: A massive market (over 2 million MSFS users) seeking realistic flight planning tools.
 
 **Market Size**: The global flight handling/briefing market is multi-billion dollar, but the specific "GA Digital Briefing" niche targets the ~700,000 active pilots in the US alone (Source: FAA Civil Airmen Statistics). With the rise of iPad usage in cockpits (>90% adoption), the platform reach is substantial.
 
@@ -63,6 +63,21 @@ While the core prototype utilizes open standards, Microsoft technologies make sc
 *   **GitHub**: Source control, CI/CD pipelines (GitHub Actions), and project management.
 *   **Azure Potential**: The Flask backend is container-ready for **Azure App Service**. The SQL database is designed to migrate seamlessly to **Azure Database for PostgreSQL**.
 *   **Future AI Integration**: We plan to migrate our AI inference to **Azure OpenAI Service** for enterprise-grade compliance and reliability.
+
+### Microsoft Flight Simulator (MSFS 2024) Integration Roadmap
+We see a massive opportunity to scale ApacheAI by integrating directly with **Microsoft Flight Simulator**. This allows us to serve the dual market of real-world training and high-fidelity simulation.
+
+1.  **SimConnect Bridge (.NET)**:
+    *   We are building a background service using **C# and SimConnect SDK**.
+    *   This service reads the aircraft's live position (Lat/Lon/Alt) from MSFS and forwards it to our backend.
+    *   **Benefit**: The ApacheAI dashboard automatically updates the weather briefing as the virtual flight progresses.
+
+2.  **In-Game Panel (WASM/HTML/JS)**:
+    *   We will wrap our frontend into an **MSFS Toolbar Panel** using the Coherent GT/HTML5 standard.
+    *   **No Alt-Tab Required**: Simmers can view the live weather briefing, METARs, and TAFs directly inside the virtual cockpit.
+
+3.  **Weather Injection (Future)**:
+    *   Using the MSFS Weather SDK, we plan to inject *historical* weather scenarios (e.g., "The 2021 Texas Freeze") to let students practice flying in challenging conditions that match our AI briefings.
 
 ### Deployment Architecture (Azure Integration)
 
