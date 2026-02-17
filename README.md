@@ -54,11 +54,12 @@ graph TD
 
     UI --> Routes
     Voice --> UI
-    Routes --> NOAA : "Fetch METAR/TAF"
-    Routes --> Supabase : "Fetch/Store PIREPs & NOTAMs"
+    Routes -->|Fetch METAR/TAF| NOAA
+    Routes -->|Fetch/Store PIREPs & NOTAMs| Supabase
     Routes --> AI_Logic
-    AI_Logic --> Gemini : "Generate Summary/PIREP"
-    Routes --> PDF : "Generate Briefing PDF"
+    AI_Logic -->|Generate Summary/PIREP| Gemini
+    Routes -->|Generate Briefing PDF| PDF
+
 ```
 
 ### Data Flow Diagram
