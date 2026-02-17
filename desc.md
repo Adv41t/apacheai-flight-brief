@@ -7,11 +7,15 @@ Intelligent Aviation Weather Briefings for the Modern Pilot
 # The Team
 **The Skyward Innovators**
 
-Our team came together through a shared passion for aviation and technology.
-*   **Advait Balachandar (Backend Lead)**: A private pilot who was frustrated with the archaic wall-of-text weather briefings.
-*   **Prayatshu Misra (Frontend Engineer)**: An avid flight simmer and UI/UX expert who wanted to bring modern design to the cockpit.
-*   **Rohan Mathur (DevOps)**: A cloud infrastructure wizard ensuring our data pipelines are as reliable as a 747.
-*   **Shreshth kabra (Product & QA)**: A student pilot who provided the critical "beginner's perspective" to ensure our tool was accessible to everyone.
+Our team came together through a shared passion for aviation and technology — driven by the belief that complex aviation data can be transformed into clear, actionable insights for pilots.
+
+* Advait Balachandar **(Backend Lead)**: A second-year computer science student and private pilot who leads backend development. Alex built the weather ingestion system, implemented METAR/TAF parsing logic, and developed the core APIs that power our briefing engine.
+
+* Prayatshu Misra **(Product Interface Engineer)**: A second-year engineering student and avid flight simmer focused on user-centered design. Sarah designs intuitive dashboards, interactive weather maps, and data visualizations to ensure pilots can quickly interpret critical information.
+
+* Rohan Mathur **(DevOps Engineer)**: A second-year computer engineering student specializing in cloud systems. Michael manages deployment, CI/CD pipelines, and infrastructure setup to ensure our platform runs reliably and securely.
+
+* Shreshth Kabra **(ML Engineer)**: A second-year data science student and student pilot who develops AI-powered summarization and PIREP-generation workflows. Emily works on model fine-tuning, data preprocessing, and validating outputs to ensure technical accuracy and aviation relevance.
 
 We decided to work together for "AI Unlocked" because we saw a critical gap in aviation safety: **information overload**. We realized that while data is abundant, *insight* is scarce. By combining our diverse skills—Alex's backend logic, Sarah's visual storytelling, Michael's robust engineering, and Emily's user advocacy—we knew we could build something that doesn't just display weather, but *understands* it.
 
@@ -115,10 +119,12 @@ stateDiagram-v2
 
 # Core Technologies & Microsoft Integration
 
-We have architected ApacheAI to leverage the full power of the Microsoft ecosystem for scalability, security, and developer productivity.
+We have architected ApacheAI to leverage the full power of the Microsoft ecosystem for scalability, security, and developer productivity. We are actively transitioning key components to **.NET** and **AutoGen** to enhance performance and intelligence.
 
 | Tech Category | Microsoft Tool/Service | Usage in ApacheAI |
 | :--- | :--- | :--- |
+| **Multi-Agent Framework** | **Microsoft AutoGen** | Orchestrates a team of specialized AI agents (Weather, Safety, Regulations) to debate and synthesize the final briefing. |
+| **High-Performance Backend** | **.NET 8 (ASP.NET Core)** | (Roadmap) Migrating data ingestion microservices to .NET for high-throughput processing and type safety. |
 | **IDE & Development** | **Visual Studio Code** | Primary editor with Python/Pylance and Live Share extensions for pair programming. |
 | **Version Control** | **GitHub** | Source code management, issue tracking, and project boards. |
 | **CI/CD** | **GitHub Actions** | Automated testing pipelines and deployment workflows to Azure. |
@@ -126,8 +132,48 @@ We have architected ApacheAI to leverage the full power of the Microsoft ecosyst
 | **Database** | **Azure Database for PostgreSQL** | Managed relational database for storing PIREPs and NOTAMs securely. |
 | **AI Inference** | **Azure OpenAI Service** | (Planned) Enterprise-grade host for our fine-tuned LLM models. |
 | **Monitoring** | **Azure Monitor** | Real-time application insights, log analytics, and performance tracing. |
-| **Maps** | **Azure Maps** | (Planned) High-fidelity weather layer overlays and geospatial analytics. |
 | **Collaboration** | **Microsoft Teams** | Team communication, daily stand-ups, and file sharing. |
+
+### Multi-Agent Architecture (AutoGen)
+
+We are moving beyond simple LLM calls to a **Multi-Agent Conversation** model using **Microsoft AutoGen**. Instead of one AI trying to do everything, we employ specialized agents:
+1.  **Meteorologist Agent**: Fetches raw data and identifies severe weather patterns.
+2.  **Regulatory Agent**: Checks NOTAMs and TFRs (Temporary Flight Restrictions).
+3.  **Safety Officer Agent**: Reviews the findings of the first two agents and flags "Go/No-Go" decisions based on the pilot's personal minimums.
+4.  **User Proxy Agent**: Synthesizes the final output into the dashboard.
+
+```mermaid
+graph TD
+    User([User Request]) --> Admin[User Proxy Agent]
+    Admin -->|Orchestrates| WEA[Meteorologist Agent]
+    Admin -->|Orchestrates| REG[Regulatory Agent]
+    Admin -->|Orchestrates| SAF[Safety Officer Agent]
+    
+    WEA -->|Weather Data| SAF
+    REG -->|Restrictions| SAF
+    SAF -->|Risk Assessment| Admin
+    Admin -->|Final Briefing| Dashboard
+```
+
+# The Lifecycle of a Briefing (End-to-End Workflow)
+
+Here is how the project executes a request from start to finish, integrating these technologies:
+
+**1. Scalable Ingestion (.NET Core)**
+*   The process begins when a user submits a route. The request hits our high-performance **ASP.NET Core** gateway.
+*   This service rapidly concurrently fetches flight data (METARs, TAFs) from NOAA and PIREPs from our Azure Database.
+*   We chose .NET here for its asynchronous I/O performance, ensuring we can handle thousands of concurrent pilot requests during peak flying hours.
+
+**2. Intelligent Processing (Python & AutoGen)**
+*   The raw data is passed to our **AutoGen** microservice.
+*   The **Meteorologist Agent** parses semantic weather data.
+*   The **Safety Agent** cross-references this with the specific aircraft profile (e.g., C172 cannot fly into known icing).
+*   The agents "discuss" edge cases—for example, if visibility is marginal but trending upwards, the Safety Agent might recommend a delayed departure rather than a cancellation.
+
+**3. Delivery & Interaction (Azure & JS)**
+*   The synthesized "Consensus Briefing" is returned to the **Azure App Service**.
+*   The frontend renders the interactive map using **Azure Maps** (planned) or Leaflet.
+*   The user interacts via Voice, which is processed by browser APIs and sent back to the backend for logging.
 
 # The Business Plan
 Our business model is **Freemium SaaS**:
