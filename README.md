@@ -9,9 +9,9 @@ Intelligent Aviation Weather Briefings for the Modern Pilot
 
 Our team came together through a shared passion for aviation and technology — driven by the belief that complex aviation data can be transformed into clear, actionable insights for pilots.
 
-* Advait Balachandar **(Backend Lead)**: A second-year Artificial Intelligence and Machine Learning student and private pilot who leads backend development. Advait built the weather ingestion system, implemented METAR/TAF parsing logic, and developed the core APIs that power our briefing engine.
+* Advait Balachandar **(Backend Lead)**: A second-year Artificial Intelligence and Machine Learning student who leads backend development. Advait built the weather ingestion system, implemented METAR/TAF parsing logic, and developed the core APIs that power our briefing engine.
 
-* Prayatshu Misra **(Product Interface Engineer)**: A second-year Artificial Intelligence and Machine Learning student and avid flight simmer focused on user-centered design. He designs intuitive dashboards, interactive weather maps, and data visualizations to ensure pilots can quickly interpret critical information.
+* Prayatshu Misra **(Product Interface Engineer)**: A second-year Artificial Intelligence and Machine Learning student focused on user-centered design. He designs intuitive dashboards, interactive weather maps, and data visualizations to ensure pilots can quickly interpret critical information.
 
 * Rohan Mathur **(DevOps Engineer)**: A second-year Information Technology student specializing in cloud systems. Rohan manages deployment, CI/CD pipelines, and infrastructure setup to ensure our platform runs reliably and securely.
 
